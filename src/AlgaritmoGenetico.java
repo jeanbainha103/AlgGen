@@ -27,21 +27,7 @@ public class AlgaritmoGenetico {
 
 		populaMatriz(matrizA);
 		int[] sucess = new int[tamanho];
-		/*int[] cam = new int[12];
-		cam[0]=7;
-		cam[1]=7;
-		cam[2]=7;
-		cam[3]=7;
-		cam[4]=6;
-		cam[5]=6;
-		cam[6]=6;
-		cam[7]=7;
-		cam[8]=7;
-		cam[9]=4;
-		cam[10]=4;
-		cam[11]=4;*/
-
-		//calculaAptidao(cam, iniciox, inicioy, labirinto, sucess);
+		ArrayList<String> caminhoFinal = new ArrayList();
 		for(int geracao = 0; geracao < 10000; geracao++) {
 			System.out.println("Geracao numero: " + geracao);
 
@@ -123,6 +109,7 @@ public class AlgaritmoGenetico {
 		int soma = 0;
 		for (int i = 0;i<linha.length;i++){
 			if (!labirinto[posx][posy].equals("S")) {
+				ArrayList<String> caminhoIntermediario = new ArrayList();
 				switch (linha[i]) {
 					case 0:
 						if (posx - 1 < 0 || inicioy - 1 < 0) soma = soma - 10;
@@ -132,6 +119,7 @@ public class AlgaritmoGenetico {
 								posx = posx - 1;
 								posy = posy - 1;
 								soma= soma +5;
+								caminhoIntermediario.add("("+posx+","+posy+")");
 								caminho[posx][posy]++;
 							} else if (labirinto[posx - 1][posy - 1].equals("S")) {
 								soma = soma + 10000;
@@ -140,6 +128,7 @@ public class AlgaritmoGenetico {
 								imprimeMatriz(caminho);
 								linha[linha.length - 1] = soma;
 								sucess = linha;
+								caminhoFinal = caminhoIntermediario;
 							} else if (labirinto[posx - 1][posy - 1].equals("1")){
 								soma=soma-3;
 							} else if (labirinto[posx - 1][posy - 1].equals("E")){
@@ -158,11 +147,13 @@ public class AlgaritmoGenetico {
 								posy = posy;
 								soma= soma +5;
 								caminho[posx][posy]++;
+								caminhoIntermediario.add("("+posx+","+posy+")");
 							} else if (labirinto[posx - 1][posy].equals("S")) {
 								soma = soma + 10000;
 								posx = posx - 1;
 								posy = posy;
 								imprimeMatriz(caminho);
+								caminhoFinal = caminhoIntermediario;
 								linha[linha.length - 1] = soma;
 							} else if (labirinto[posx - 1][posy].equals("1")){
 								soma=soma-3;
@@ -182,11 +173,13 @@ public class AlgaritmoGenetico {
 								posy = posy + 1;
 								soma= soma +5;
 								caminho[posy][posx]++;
+								caminhoIntermediario.add("("+posx+","+posy+")");
 							} else if (labirinto[posx - 1][posx + 1].equals("S")) {
 								soma = soma + 10000;
 								posx = posx - 1;
 								posy = posy + 1;
 								imprimeMatriz(caminho);
+								caminhoFinal = caminhoIntermediario;
 								linha[linha.length - 1] = soma;
 							} else if (labirinto[posx - 1][posy + 1].equals("1")){
 								soma=soma-3;
@@ -206,11 +199,13 @@ public class AlgaritmoGenetico {
 								posy = posy - 1;
 								soma= soma +5;
 								caminho[posx][posy]++;
+								caminhoIntermediario.add("("+posx+","+posy+")");
 							} else if (labirinto[posx][posy - 1].equals("S")) {
 								soma = soma + 10000;
 								posx = posx;
 								posy = posy - 1;
 								imprimeMatriz(caminho);
+								caminhoFinal = caminhoIntermediario;
 								linha[linha.length - 1] = soma;
 							} else if (labirinto[posx - 1][posy - 1].equals("1")){
 								soma=soma-3;;
@@ -230,11 +225,13 @@ public class AlgaritmoGenetico {
 								posy = posy + 1;
 								soma= soma +5;
 								caminho[posy][posx]++;
+								caminhoIntermediario.add("("+posx+","+posy+")");
 							} else if (labirinto[posx][posy + 1].equals("S")) {
 								soma = soma + 10000;
 								posx = posx;
 								posy = posy + 1;
 								imprimeMatriz(caminho);
+								caminhoFinal = caminhoIntermediario;
 								linha[linha.length - 1] = soma;
 							} else if (labirinto[posx][posy + 1].equals("1")){
 								soma=soma-3;
@@ -254,11 +251,13 @@ public class AlgaritmoGenetico {
 								posy = posy - 1;
 								soma= soma +5;
 								caminho[posy][posx]++;
+								caminhoIntermediario.add("("+posx+","+posy+")");
 							} else if (labirinto[posx + 1][posy - 1].equals("S")) {
 								soma = soma + 10000;
 								posx = posx + 1;
 								posy = posy - 1;
 								imprimeMatriz(caminho);
+								caminhoFinal = caminhoIntermediario;
 								linha[linha.length - 1] = soma;
 							} else if (labirinto[posx + 1][posy - 1].equals("1")){
 								soma=soma-3;
@@ -278,11 +277,13 @@ public class AlgaritmoGenetico {
 								posy = posy;
 								soma= soma +5;
 								caminho[posx][posx]++;
+								caminhoIntermediario.add("("+posx+","+posy+")");
 							} else if (labirinto[posx + 1][posy].equals("S")) {
 								soma = soma + 10000;
 								posx = posx + 1;
 								posy = posy;
 								imprimeMatriz(caminho);
+								caminhoFinal = caminhoIntermediario;
 								linha[linha.length - 1] = soma;
 							} else if (labirinto[posx + 1][posy].equals("1")){
 								soma=soma-3;
@@ -302,11 +303,13 @@ public class AlgaritmoGenetico {
 								posy = posy + 1;
 								soma= soma +5;
 								caminho[posx][posy]++;
+								caminhoIntermediario.add("("+posx+","+posy+")");
 							} else if (labirinto[posx + 1][posy + 1].equals("S")) {
 								soma = soma + 10000;
 								posx = posx + 1;
 								posy = posy + 1;
 								imprimeMatriz(caminho);
+								caminhoFinal = caminhoIntermediario;
 								linha[linha.length - 1] = soma;
 							} else if (labirinto[posx + 1][posy + 1].equals("1")){
 								soma=soma-3;
@@ -362,4 +365,3 @@ public class AlgaritmoGenetico {
 		}
 	}
 }
-
