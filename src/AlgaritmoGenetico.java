@@ -10,7 +10,7 @@ public class AlgaritmoGenetico {
 	public static void main(String args[]) {
 		int iniciox = 0;
 		int inicioy = 0;
-		String[][] labirinto = lerArquivo("labirinto1_10.txt");
+		String[][] labirinto = lerArquivo(args[0]);
 		int populacao = labirinto.length * 50;
 		int tamanho = labirinto.length*8;
 		for(int i = 0;i<labirinto.length;i++) {
