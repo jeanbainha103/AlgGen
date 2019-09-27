@@ -22,7 +22,6 @@ public class AlgaritmoGenetico {
 
 		int[][] matrizA = new int[populacao][tamanho+1];
 		int[][] matrizI = new int[populacao][tamanho+1];
-		int[][] labirintoFinal = new int[labirinto.length][labirinto.length];
 
 		populaMatriz(matrizA);
 		int[] sucess = new int[tamanho];
