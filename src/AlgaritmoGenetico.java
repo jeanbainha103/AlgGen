@@ -26,7 +26,7 @@ public class AlgaritmoGenetico {
 
 		populaMatriz(matrizA);
 		int[] sucess = new int[tamanho];
-		for(int geracao = 0; geracao < 50; geracao++) {
+		for(int geracao = 0; geracao < 1000; geracao++) {
 			System.out.println("Geracao numero: " + geracao);
 
 			for(int i = 0; i < matrizA.length; i++) {
