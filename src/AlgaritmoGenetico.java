@@ -19,6 +19,8 @@ public class AlgaritmoGenetico {
 				}
 			}
 		}
+		
+		//new baranch
 
 		int[][] matrizA = new int[populacao][tamanho+1];
 		int[][] matrizI = new int[populacao][tamanho+1];
